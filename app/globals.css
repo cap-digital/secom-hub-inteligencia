@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Secom · Hub de Inteligência — design tokens (Bahia flag)
+   Committed dark theme: a premium operations deck.
+   ============================================================ */
+@theme {
+  /* Canvas — near-black, tinted with royal-blue hue */
+  --color-navy-950: #05070f;
+  --color-navy-900: #080b18;
+  --color-navy-850: #0b0f20;
+  --color-navy-800: #0f1428;
+
+  /* Primary — flag royal blue */
+  --color-royal-800: #00298a;
+
+  /* Interactive glow — luminous tint of the royal hue */
+  --color-azure-200: #a9c4ff;
+  --color-azure-300: #7fa9ff;
+  --color-azure-400: #4c87ff;
+  --color-azure-500: #2e6bf5;
+
+  /* Accent — flag hoist red (reserved + rare) */
+  --color-red-200: #ffb3b9;
+  --color-red-300: #ff8a93;
+  --color-red-500: #ff2a3c;
+  --color-red-600: #e30613;
+  --color-red-700: #b4050f;
+
+  /* Text neutrals (tuned for AA on navy) */
+  --color-slate-300: #c3cad9;
+  --color-slate-400: #8a93a8;
+  --color-slate-500: #5c6479;
+
+  /* Fonts (provided by next/font in layout.tsx) */
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--color-navy-950);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(76, 135, 255, 0.28);
+  color: #fff;
+}
+
+/* H1 gradient text clip (word "Inteligência") */
+.text-gradient-azure {
+  background: linear-gradient(180deg, #7fa9ff 0%, #ffffff 60%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Tricolor "signal bar" — the one place the 3 flag colors touch */
+.tricolor-rule {
+  background: linear-gradient(
+    90deg,
+    #00298a 0 33%,
+    rgba(255, 255, 255, 0.7) 33% 66%,
+    #e30613 66% 100%
+  );
+}
+
+/* ============================================================
+   Motion — subtle, <=700ms. A command center hums, it doesn't bounce.
+   ============================================================ */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes signalDraw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes driftA {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(60px, -40px, 0);
+  }
+}
+@keyframes driftB {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50px, 32px, 0);
+  }
+}
+
+.fade-up,
+.card-in {
+  animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.signal-draw {
+  transform-origin: left center;
+  animation: signalDraw 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.35s;
+}
+.orb-a {
+  animation: driftA 26s ease-in-out infinite alternate;
+  will-change: transform;
+}
+.orb-b {
+  animation: driftB 30s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up,
+  .card-in,
+  .signal-draw,
+  .orb-a,
+  .orb-b {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

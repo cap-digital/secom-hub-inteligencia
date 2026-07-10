@@ -1,0 +1,10 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="32" height="32" rx="8" fill="#0B0F20"/>
+  <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" stroke="#FFFFFF" stroke-opacity="0.10"/>
+  <!-- blue/white stripes (the fly) -->
+  <rect x="6" y="8"  width="20" height="2.4" rx="1.2" fill="#4C87FF"/>
+  <rect x="6" y="14.8" width="20" height="2.4" rx="1.2" fill="#7FA9FF" fill-opacity="0.65"/>
+  <rect x="6" y="21.6" width="20" height="2.4" rx="1.2" fill="#4C87FF"/>
+  <!-- red hoist triangle -->
+  <path d="M5 5 L15 5 L5 22 Z" fill="#E30613"/>
+</svg>
