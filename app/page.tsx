@@ -42,43 +42,6 @@ const systems: System[] = [
   },
 ];
 
-function BahiaMark() {
-  return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 32 32"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      className="shrink-0"
-    >
-      <rect width="32" height="32" rx="7" fill="#131a2e" />
-      <rect
-        x="0.5"
-        y="0.5"
-        width="31"
-        height="31"
-        rx="6.5"
-        stroke="#FFFFFF"
-        strokeOpacity="0.12"
-      />
-      <rect x="6" y="8" width="20" height="2.4" rx="1.2" fill="#3f7bef" />
-      <rect
-        x="6"
-        y="14.8"
-        width="20"
-        height="2.4"
-        rx="1.2"
-        fill="#6a9bff"
-        fillOpacity="0.7"
-      />
-      <rect x="6" y="21.6" width="20" height="2.4" rx="1.2" fill="#3f7bef" />
-      <path d="M5 5 L15 5 L5 22 Z" fill="#e30613" />
-    </svg>
-  );
-}
-
 function SystemCard({ system, index }: { system: System; index: number }) {
   const { Icon } = system;
   const isRed = system.accent === "red";
@@ -152,25 +115,9 @@ export default function Home() {
         Pular para os sistemas
       </a>
 
-      {/* Cabeçalho */}
-      <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-navy-950/80 backdrop-blur-md">
-        <div className="mx-auto flex h-16 max-w-5xl items-center px-5 md:px-8">
-          <div className="flex items-center gap-3">
-            <BahiaMark />
-            <span className="text-[0.95rem] font-semibold tracking-tight text-white">
-              SECOM
-            </span>
-            <span className="hidden h-4 w-px bg-white/15 sm:block" />
-            <span className="hidden text-sm text-slate-400 sm:inline">
-              Hub de Inteligência
-            </span>
-          </div>
-        </div>
-      </header>
-
       <main className="mx-auto max-w-5xl px-5 pb-16 md:px-8">
         {/* Introdução */}
-        <section className="fade-up pt-16 md:pt-24">
+        <section className="fade-up pt-20 md:pt-28">
           <div className="h-1 w-12 rounded-full tricolor-rule" aria-hidden="true" />
           <p className="mt-6 text-sm text-slate-400">
             Secretaria de Comunicação · Governo do Estado da Bahia
