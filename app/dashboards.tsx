@@ -69,7 +69,7 @@ const systems: System[] = [
     tone: "emerald",
   },
   {
-    title: "Sistematiza-e",
+    title: "Sistematizaê",
     desc: "Acompanhamento sistematizado das demandas, fluxos e entregas de comunicação.",
     href: "https://secom-sistematizae.capdigital.company/",
     Icon: Workflow,

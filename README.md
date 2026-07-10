@@ -11,7 +11,7 @@ suave e chips de ícone em tons pastel.
 |-------------------|-----------------------------------------------------|
 | Educação Digital  | https://secom-educacaodigital.capdigital.company/   |
 | Regionais         | https://secom-regionais.capdigital.company/         |
-| Sistematiza-e     | https://secom-sistematizae.capdigital.company/      |
+| Sistematizaê      | https://secom-sistematizae.capdigital.company/      |
 | Nova Bahia        | https://secom-novabahia.capdigital.company/         |
 
 Todos os links abrem em nova aba. Para editar títulos, descrições, ícones,
