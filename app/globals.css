@@ -1,40 +1,17 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Secom · Hub de Inteligência — tokens
-   Tema escuro sóbrio, tipografia Inter, cores da bandeira da Bahia.
+   Secom · Hub de Inteligência — tema claro (padrão dos dashboards)
+   Fundo cinza-claro, cards brancos, sombras suaves, tipografia Inter.
    ============================================================ */
 @theme {
-  /* Fundo (azul-marinho suave, não puro) */
-  --color-navy-950: #0b1020;
-  --color-navy-900: #0f1526;
-  --color-navy-850: #131a2e;
-  --color-navy-800: #172036;
-  --color-navy-700: #1f2942;
-
-  /* Azul (bandeira / acento de links) */
-  --color-royal-800: #00298a;
-  --color-blue-400: #6a9bff;
-  --color-blue-500: #3f7bef;
-  --color-blue-600: #2b62d4;
-
-  /* Vermelho (bandeira, reservado) */
-  --color-red-500: #f0475a;
-  --color-red-600: #e30613;
-
-  /* Texto */
-  --color-slate-300: #cbd2e0;
-  --color-slate-400: #97a0b3;
-  --color-slate-500: #6b7488;
-
-  /* Tipografia — apenas Inter */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-inter), ui-monospace, monospace;
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html {
@@ -43,23 +20,13 @@ html {
 }
 
 body {
-  background-color: var(--color-navy-950);
+  background-color: #f5f6f8;
   overflow-x: hidden;
 }
 
 ::selection {
-  background: rgba(63, 123, 239, 0.3);
-  color: #fff;
-}
-
-/* Acento discreto com as três cores da bandeira */
-.tricolor-rule {
-  background: linear-gradient(
-    90deg,
-    #00298a 0 33.33%,
-    #ffffff 33.33% 66.66%,
-    #e30613 66.66% 100%
-  );
+  background: rgba(79, 70, 229, 0.15);
+  color: #111827;
 }
 
 /* Entrada sutil */

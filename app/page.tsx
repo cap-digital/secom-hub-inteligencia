@@ -9,11 +9,32 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+type Tone = "indigo" | "emerald" | "amber" | "rose";
+
+const tones: Record<Tone, { chip: string; cta: string }> = {
+  indigo: {
+    chip: "bg-indigo-50 text-indigo-600 ring-1 ring-inset ring-indigo-100",
+    cta: "text-indigo-600",
+  },
+  emerald: {
+    chip: "bg-emerald-50 text-emerald-600 ring-1 ring-inset ring-emerald-100",
+    cta: "text-emerald-600",
+  },
+  amber: {
+    chip: "bg-amber-50 text-amber-600 ring-1 ring-inset ring-amber-100",
+    cta: "text-amber-600",
+  },
+  rose: {
+    chip: "bg-rose-50 text-rose-600 ring-1 ring-inset ring-rose-100",
+    cta: "text-rose-600",
+  },
+};
+
 type System = {
   title: string;
   href: string;
   Icon: LucideIcon;
-  accent: "blue" | "red";
+  tone: Tone;
 };
 
 const systems: System[] = [
@@ -21,31 +42,31 @@ const systems: System[] = [
     title: "Educação Digital",
     href: "https://secom-educacaodigital.capdigital.company/",
     Icon: GraduationCap,
-    accent: "blue",
+    tone: "indigo",
   },
   {
     title: "Regionais",
     href: "https://secom-regionais.capdigital.company/",
     Icon: MapPinned,
-    accent: "blue",
+    tone: "emerald",
   },
   {
     title: "Sistematiza-e",
     href: "https://secom-sistematizae.capdigital.company/",
     Icon: Workflow,
-    accent: "blue",
+    tone: "amber",
   },
   {
     title: "Nova Bahia",
     href: "https://secom-novabahia.capdigital.company/",
     Icon: Sunrise,
-    accent: "red",
+    tone: "rose",
   },
 ];
 
 function SystemCard({ system, index }: { system: System; index: number }) {
   const { Icon } = system;
-  const isRed = system.accent === "red";
+  const tone = tones[system.tone];
   const style = { animationDelay: `${80 + index * 60}ms` } as CSSProperties;
 
   return (
@@ -55,34 +76,27 @@ function SystemCard({ system, index }: { system: System; index: number }) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`Abrir ${system.title} em nova aba`}
-        className="group relative flex h-full flex-col rounded-2xl border border-white/[0.08] bg-gradient-to-b from-navy-800/80 to-navy-850/70 p-6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05),0_8px_24px_-14px_rgba(0,0,0,0.6)] transition-all duration-200 hover:-translate-y-1 hover:border-blue-500/40 hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_16px_34px_-16px_rgba(0,0,0,0.7)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-950"
+        className="group flex h-full flex-col rounded-2xl border border-gray-200/80 bg-white p-6 shadow-[0_1px_2px_rgba(16,24,40,0.04),0_1px_3px_rgba(16,24,40,0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:border-gray-300 hover:shadow-[0_12px_28px_-10px_rgba(16,24,40,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f5f6f8]"
       >
         <div className="flex items-start justify-between">
           <span
-            className={
-              isRed
-                ? "flex h-11 w-11 items-center justify-center rounded-xl border border-red-600/25 bg-red-600/10 text-red-500 transition-colors duration-200 group-hover:bg-red-600/15"
-                : "flex h-11 w-11 items-center justify-center rounded-xl border border-blue-500/25 bg-blue-500/10 text-blue-400 transition-colors duration-200 group-hover:bg-blue-500/15"
-            }
+            className={`flex h-11 w-11 items-center justify-center rounded-xl ${tone.chip}`}
           >
-            <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
+            <Icon className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
           </span>
           <ArrowUpRight
-            className="h-5 w-5 text-slate-500 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-slate-300"
+            className="h-5 w-5 text-gray-300 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-gray-500"
             aria-hidden="true"
           />
         </div>
 
-        <p className="mt-6 text-xs font-medium text-slate-500">Dashboard</p>
-        <h2 className="mt-1 text-lg font-semibold tracking-tight text-white">
+        <p className="mt-6 text-xs font-medium text-gray-400">Dashboard</p>
+        <h2 className="mt-1 text-lg font-semibold tracking-tight text-gray-900">
           {system.title}
         </h2>
 
         <div
-          className={
-            (isRed ? "text-red-500" : "text-blue-400") +
-            " mt-auto flex items-center gap-1.5 pt-8 text-sm font-medium transition-all duration-200 group-hover:gap-2.5"
-          }
+          className={`${tone.cta} mt-auto flex items-center gap-1.5 pt-8 text-sm font-semibold transition-all duration-200 group-hover:gap-2.5`}
         >
           <span>Acessar dashboard</span>
           <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
@@ -94,46 +108,41 @@ function SystemCard({ system, index }: { system: System; index: number }) {
 
 export default function Home() {
   return (
-    <>
-      {/* Fundo discreto */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none fixed inset-0 -z-10 bg-navy-950"
-      >
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "radial-gradient(900px 500px at 50% -8%, rgba(0,41,138,0.20), transparent 62%)",
-          }}
-        />
-      </div>
-
+    <div className="flex min-h-full flex-col">
       <a
-        href="#sistemas"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-blue-500 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white"
+        href="#dashboards"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-indigo-600 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white"
       >
-        Pular para os sistemas
+        Pular para os dashboards
       </a>
 
-      <main className="mx-auto max-w-5xl px-5 pb-16 md:px-8">
-        {/* Introdução */}
-        <section className="fade-up pt-20 md:pt-28">
+      <main className="mx-auto w-full max-w-5xl flex-1 px-5 pb-16 md:px-8">
+        {/* Marca */}
+        <div className="fade-up flex items-center gap-3 pt-10 md:pt-14">
           <Image
             src="/logo-governo-bahia.png"
             alt="Governo do Estado da Bahia"
-            width={104}
-            height={104}
+            width={48}
+            height={48}
             priority
-            className="h-24 w-24 md:h-28 md:w-28"
+            className="h-12 w-12 shrink-0"
           />
-          <p className="mt-5 text-sm text-slate-400">
-            Secretaria de Comunicação · Governo do Estado da Bahia
-          </p>
-          <h1 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">
+          <div className="border-l border-gray-200 pl-3">
+            <p className="text-sm font-semibold tracking-tight text-gray-900">
+              SECOM
+            </p>
+            <p className="text-xs text-gray-500">
+              Secretaria de Comunicação Social
+            </p>
+          </div>
+        </div>
+
+        {/* Cabeçalho */}
+        <section className="fade-up pt-12 md:pt-16">
+          <h1 className="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
             Hub de Inteligência
           </h1>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-400 md:text-lg">
+          <p className="mt-3 max-w-xl text-base leading-relaxed text-gray-500 md:text-lg">
             Acesse em um só ambiente os dashboards de inteligência e comunicação
             da Secom.
           </p>
@@ -141,8 +150,8 @@ export default function Home() {
 
         {/* Dashboards */}
         <ul
-          id="sistemas"
-          className="mt-12 grid scroll-mt-24 grid-cols-1 gap-4 sm:grid-cols-2 md:mt-14 md:gap-5"
+          id="dashboards"
+          className="mt-10 grid scroll-mt-8 grid-cols-1 gap-4 sm:grid-cols-2 md:gap-5"
         >
           {systems.map((system, i) => (
             <SystemCard key={system.title} system={system} index={i} />
@@ -151,16 +160,20 @@ export default function Home() {
       </main>
 
       {/* Rodapé */}
-      <footer className="mt-4 border-t border-white/[0.06]">
-        <div className="mx-auto flex max-w-5xl flex-col gap-1 px-5 py-8 md:px-8">
-          <p className="text-sm text-slate-400">
-            Secretaria de Comunicação · Governo do Estado da Bahia
+      <footer className="border-t border-gray-200 bg-white">
+        <div className="mx-auto flex max-w-5xl flex-col items-center gap-3 px-5 py-8 text-center md:px-8">
+          <p className="text-sm text-gray-500">
+            Desenvolvido pelo time de inteligência da CAP Digital
           </p>
-          <p className="text-xs text-slate-500">
-            Ambiente interno de acesso aos dashboards da Secom.
-          </p>
+          <Image
+            src="/capco.png"
+            alt="CAP.CO"
+            width={2001}
+            height={761}
+            className="h-5 w-auto"
+          />
         </div>
       </footer>
-    </>
+    </div>
   );
 }

@@ -11,7 +11,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Secom · Hub de Inteligência",
   description:
-    "Acesse em um só ambiente os sistemas de inteligência e comunicação da Secretaria de Comunicação do Estado da Bahia.",
+    "Acesse em um só ambiente os dashboards de inteligência e comunicação da Secretaria de Comunicação do Estado da Bahia.",
   applicationName: "Secom · Hub de Inteligência",
   authors: [{ name: "Secretaria de Comunicação do Estado da Bahia" }],
   keywords: [
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b1020",
-  colorScheme: "dark",
+  themeColor: "#f5f6f8",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
@@ -35,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full bg-navy-950 font-sans text-slate-300">
+      <body className="min-h-full bg-[#f5f6f8] font-sans text-gray-600">
         {children}
       </body>
     </html>
