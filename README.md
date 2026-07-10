@@ -14,8 +14,9 @@ suave e chips de ícone em tons pastel.
 | Sistematiza-e     | https://secom-sistematizae.capdigital.company/      |
 | Nova Bahia        | https://secom-novabahia.capdigital.company/         |
 
-Todos os links abrem em nova aba. Para editar títulos, ícones, cores ou links,
-altere o array `systems` no topo de [`app/page.tsx`](app/page.tsx).
+Todos os links abrem em nova aba. Para editar títulos, descrições, ícones,
+cores ou links, altere o array `systems` no topo de
+[`app/dashboards.tsx`](app/dashboards.tsx).
 
 ## Stack
 
@@ -36,7 +37,9 @@ npm run lint       # ESLint
 
 ## Características
 
-- **One page**, totalmente **responsivo** (2×2 no desktop, coluna única no mobile).
+- **One page**, totalmente **responsivo** (3 colunas no desktop, 2 no tablet, 1 no mobile).
+- **Busca** para filtrar os dashboards por título/descrição.
+- Cards com descrição e mini-gráfico (preview) na cor de cada dashboard.
 - Tema claro alinhado ao padrão dos dashboards da Secom.
 - Branding: logo do Governo do Estado da Bahia + SECOM.
 - Acessibilidade: `focus-visible`, skip-link, semântica e `prefers-reduced-motion`.
