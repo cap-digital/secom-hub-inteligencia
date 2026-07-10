@@ -11,22 +11,33 @@ import {
 
 type Tone = "indigo" | "emerald" | "amber" | "rose";
 
-const tones: Record<Tone, { chip: string; cta: string }> = {
+const tones: Record<
+  Tone,
+  { chip: string; cta: string; bar: string; soft: string }
+> = {
   indigo: {
     chip: "bg-indigo-50 text-indigo-600 ring-1 ring-inset ring-indigo-100",
     cta: "text-indigo-600",
+    bar: "bg-indigo-400",
+    soft: "bg-indigo-100",
   },
   emerald: {
     chip: "bg-emerald-50 text-emerald-600 ring-1 ring-inset ring-emerald-100",
     cta: "text-emerald-600",
+    bar: "bg-emerald-400",
+    soft: "bg-emerald-100",
   },
   amber: {
     chip: "bg-amber-50 text-amber-600 ring-1 ring-inset ring-amber-100",
     cta: "text-amber-600",
+    bar: "bg-amber-400",
+    soft: "bg-amber-100",
   },
   rose: {
     chip: "bg-rose-50 text-rose-600 ring-1 ring-inset ring-rose-100",
     cta: "text-rose-600",
+    bar: "bg-rose-400",
+    soft: "bg-rose-100",
   },
 };
 
@@ -64,9 +75,56 @@ const systems: System[] = [
   },
 ];
 
+// Alturas (%) das barras do mini-gráfico — variadas por card.
+const previewBars = [
+  [45, 70, 55, 85, 62, 95],
+  [60, 42, 78, 52, 90, 68],
+  [38, 58, 46, 68, 82, 60],
+  [52, 74, 60, 88, 70, 100],
+];
+
+function MiniPreview({
+  tone,
+  bars,
+}: {
+  tone: (typeof tones)[Tone];
+  bars: number[];
+}) {
+  return (
+    <div
+      aria-hidden="true"
+      className="rounded-xl border border-gray-100 bg-gray-50 p-2.5"
+    >
+      {/* Mini KPIs */}
+      <div className="grid grid-cols-3 gap-1.5">
+        {[0, 1, 2].map((k) => (
+          <div
+            key={k}
+            className="rounded-md bg-white px-2 py-1.5 ring-1 ring-gray-100"
+          >
+            <div className="h-1 w-5 rounded-full bg-gray-200" />
+            <div className={`mt-1 h-1.5 w-7 rounded-full ${tone.soft}`} />
+          </div>
+        ))}
+      </div>
+      {/* Mini gráfico */}
+      <div className="mt-1.5 flex h-14 items-end gap-1 rounded-md bg-white px-2 pb-1.5 pt-1 ring-1 ring-gray-100">
+        {bars.map((h, k) => (
+          <div
+            key={k}
+            className={`flex-1 rounded-sm ${tone.bar}`}
+            style={{ height: `${h}%` }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function SystemCard({ system, index }: { system: System; index: number }) {
   const { Icon } = system;
   const tone = tones[system.tone];
+  const bars = previewBars[index % previewBars.length];
   const style = { animationDelay: `${80 + index * 60}ms` } as CSSProperties;
 
   return (
@@ -90,13 +148,17 @@ function SystemCard({ system, index }: { system: System; index: number }) {
           />
         </div>
 
-        <p className="mt-6 text-xs font-medium text-gray-400">Dashboard</p>
+        <p className="mt-5 text-xs font-medium text-gray-400">Dashboard</p>
         <h2 className="mt-1 text-lg font-semibold tracking-tight text-gray-900">
           {system.title}
         </h2>
 
+        <div className="mt-4">
+          <MiniPreview tone={tone} bars={bars} />
+        </div>
+
         <div
-          className={`${tone.cta} mt-auto flex items-center gap-1.5 pt-8 text-sm font-semibold transition-all duration-200 group-hover:gap-2.5`}
+          className={`${tone.cta} mt-auto flex items-center gap-1.5 pt-5 text-sm font-semibold transition-all duration-200 group-hover:gap-2.5`}
         >
           <span>Acessar dashboard</span>
           <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
@@ -120,12 +182,12 @@ export default function Home() {
         {/* Marca */}
         <div className="fade-up flex items-center gap-3 pt-10 md:pt-14">
           <Image
-            src="/logo-governo-bahia.png"
-            alt="Governo do Estado da Bahia"
-            width={48}
-            height={48}
+            src="/logo-bahia.png"
+            alt="Governo da Bahia · Do lado da gente"
+            width={569}
+            height={328}
             priority
-            className="h-12 w-12 shrink-0"
+            className="h-14 w-auto shrink-0"
           />
           <div className="border-l border-gray-200 pl-3">
             <p className="text-sm font-semibold tracking-tight text-gray-900">
