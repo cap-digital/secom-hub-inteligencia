@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import Image from "next/image";
 import {
   GraduationCap,
   MapPinned,
@@ -118,8 +119,15 @@ export default function Home() {
       <main className="mx-auto max-w-5xl px-5 pb-16 md:px-8">
         {/* Introdução */}
         <section className="fade-up pt-20 md:pt-28">
-          <div className="h-1 w-12 rounded-full tricolor-rule" aria-hidden="true" />
-          <p className="mt-6 text-sm text-slate-400">
+          <Image
+            src="/logo-governo-bahia.png"
+            alt="Governo do Estado da Bahia"
+            width={104}
+            height={104}
+            priority
+            className="h-24 w-24 md:h-28 md:w-28"
+          />
+          <p className="mt-5 text-sm text-slate-400">
             Secretaria de Comunicação · Governo do Estado da Bahia
           </p>
           <h1 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">
