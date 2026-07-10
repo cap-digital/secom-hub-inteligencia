@@ -1,41 +1,36 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Secom · Hub de Inteligência — design tokens (Bahia flag)
-   Committed dark theme: a premium operations deck.
+   Secom · Hub de Inteligência — tokens
+   Tema escuro sóbrio, tipografia Inter, cores da bandeira da Bahia.
    ============================================================ */
 @theme {
-  /* Canvas — near-black, tinted with royal-blue hue */
-  --color-navy-950: #05070f;
-  --color-navy-900: #080b18;
-  --color-navy-850: #0b0f20;
-  --color-navy-800: #0f1428;
+  /* Fundo (azul-marinho suave, não puro) */
+  --color-navy-950: #0b1020;
+  --color-navy-900: #0f1526;
+  --color-navy-850: #131a2e;
+  --color-navy-800: #172036;
+  --color-navy-700: #1f2942;
 
-  /* Primary — flag royal blue */
+  /* Azul (bandeira / acento de links) */
   --color-royal-800: #00298a;
+  --color-blue-400: #6a9bff;
+  --color-blue-500: #3f7bef;
+  --color-blue-600: #2b62d4;
 
-  /* Interactive glow — luminous tint of the royal hue */
-  --color-azure-200: #a9c4ff;
-  --color-azure-300: #7fa9ff;
-  --color-azure-400: #4c87ff;
-  --color-azure-500: #2e6bf5;
-
-  /* Accent — flag hoist red (reserved + rare) */
-  --color-red-200: #ffb3b9;
-  --color-red-300: #ff8a93;
-  --color-red-500: #ff2a3c;
+  /* Vermelho (bandeira, reservado) */
+  --color-red-500: #f0475a;
   --color-red-600: #e30613;
-  --color-red-700: #b4050f;
 
-  /* Text neutrals (tuned for AA on navy) */
-  --color-slate-300: #c3cad9;
-  --color-slate-400: #8a93a8;
-  --color-slate-500: #5c6479;
+  /* Texto */
+  --color-slate-300: #cbd2e0;
+  --color-slate-400: #97a0b3;
+  --color-slate-500: #6b7488;
 
-  /* Fonts (provided by next/font in layout.tsx) */
-  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  /* Tipografia — apenas Inter */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-inter), ui-monospace, monospace;
 }
 
 :root {
@@ -53,90 +48,37 @@ body {
 }
 
 ::selection {
-  background: rgba(76, 135, 255, 0.28);
+  background: rgba(63, 123, 239, 0.3);
   color: #fff;
 }
 
-/* H1 gradient text clip (word "Inteligência") */
-.text-gradient-azure {
-  background: linear-gradient(180deg, #7fa9ff 0%, #ffffff 60%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Tricolor "signal bar" — the one place the 3 flag colors touch */
+/* Acento discreto com as três cores da bandeira */
 .tricolor-rule {
   background: linear-gradient(
     90deg,
-    #00298a 0 33%,
-    rgba(255, 255, 255, 0.7) 33% 66%,
-    #e30613 66% 100%
+    #00298a 0 33.33%,
+    #ffffff 33.33% 66.66%,
+    #e30613 66.66% 100%
   );
 }
 
-/* ============================================================
-   Motion — subtle, <=700ms. A command center hums, it doesn't bounce.
-   ============================================================ */
+/* Entrada sutil */
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
     transform: none;
   }
 }
-@keyframes signalDraw {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-@keyframes driftA {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(60px, -40px, 0);
-  }
-}
-@keyframes driftB {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(-50px, 32px, 0);
-  }
-}
-
-.fade-up,
-.card-in {
-  animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-.signal-draw {
-  transform-origin: left center;
-  animation: signalDraw 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: 0.35s;
-}
-.orb-a {
-  animation: driftA 26s ease-in-out infinite alternate;
-  will-change: transform;
-}
-.orb-b {
-  animation: driftB 30s ease-in-out infinite alternate;
-  will-change: transform;
+.fade-up {
+  animation: fadeUp 0.5s ease-out both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fade-up,
-  .card-in,
-  .signal-draw,
-  .orb-a,
-  .orb-b {
+  .fade-up {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
